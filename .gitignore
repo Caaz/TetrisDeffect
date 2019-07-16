@@ -1,0 +1,5 @@
+# Ignore exports
+*.wav
+*.png
+*.js
+*.html
