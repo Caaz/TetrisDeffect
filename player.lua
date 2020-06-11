@@ -102,9 +102,9 @@ _player = _{
       end
     end
   end,
-  beat = function(t) t:create_halo() end,
+  beat = function(t) t.outline = 7 end,
   create_halo = function(t)
-    for x = 5, 36 do
+    for x = 5, 36,2 do
       for y = 0, 61, 61 do
         add(t.vfx, _halo{
           x=t.ox+x,
@@ -116,7 +116,7 @@ _player = _{
       end
     end
     for x = 5, 36, 31 do
-      for y = 0, 61 do
+      for y = 0, 61,2 do
         add(t.vfx, _halo{
           x=t.ox+x,
           y=t.oy+y,
@@ -128,7 +128,6 @@ _player = _{
     end
   end,
   attack = function(t,attack)
-    -- printh('Attacked! '..attack)
     for i = 1, attack do
       for y = 0, 19 do
         for x = 0, 9 do
@@ -229,7 +228,7 @@ _player = _{
       end
     end
     if check then
-      sfx(0)
+      -- sfx(0)
       if not t:can_place() then
         if not t:move(1,0) and
           not t:move(-1, 0) and

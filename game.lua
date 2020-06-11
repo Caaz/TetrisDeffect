@@ -1,3 +1,5 @@
+reset_pattern = { [7]=0 }
+
 
 _.states['game'] = {
   last = -1,
@@ -15,7 +17,7 @@ _.states['game'] = {
     end
     t.players[1].ps.style = t.options.particle_style
     if t.players[2] then t.players[2].ps = t.players[1].ps end
-
+    music(1)
   end,
   reset_options = function(t) t.options = {} end,
   set_options = function(t,o) merge(t.options, o) end,
@@ -32,15 +34,40 @@ _.states['game'] = {
     end
   end,
   update = function(t)
-    -- local note_index = stat(20)
-    -- if note_index != t.last then
-    --   if note_index == 0 then
-    --     for i, player in pairs(t.players) do
-    --       player:beat()
-    --     end
-    --   end
-    -- end
-    -- t.last = note_index
+    depth = 0
+    for i, player in pairs(t.players) do
+      -- player:beat()
+      for j = 1, #player.grid do
+        if player.grid[j] != 0 then break end
+        depth = max(depth,flr(j/10))
+      end
+    end
+
+    local note_index = stat(21)
+    if note_index != t.last then
+      if note_index % 4 == 0 then
+        for i, player in pairs(t.players) do
+          player:beat()
+        end
+      end
+      if note_index == 31 then
+        -- update tempo
+        pattern = stat(24)
+        pattern = reset_pattern[pattern] or pattern
+        pattern_address = 0x3100+(pattern+1)*4
+        for i = 0, 3 do
+          sfx = peek(pattern_address+i)
+          sb = itb(sfx,8)
+          sfx_index = pull(sb,5)
+          sfx_address = 0x3200 + sfx_index * 68 + 65
+          poke(sfx_address,max(8,depth))
+        end
+      end
+
+      --
+
+    end
+    t.last = note_index
     forall(t.players,'update')
   end,
   draw = function(t)
