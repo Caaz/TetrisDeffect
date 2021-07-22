@@ -2,20 +2,20 @@ pico-8 cartridge // http://www.pico-8.com
 version 18
 __lua__
 
-#include ../pico8-lib/ichor.lua
-#include ../pico8-lib/table/forall.lua
-#include ../pico8-lib/table/merge.lua
-#include ../pico8-lib/table/shift.lua
-#include ../pico8-lib/table/contains.lua
-#include ../pico8-lib/vendor/opensimplex.lua
-#include ../pico8-lib/vendor/fys.lua
-#include ../pico8-lib/debug.lua
-#include ../pico8-lib/vendor/unpack.lua
-#include ../pico8-lib/scribble.lua
+#include pico8-lib/ichor.lua
+#include pico8-lib/table/forall.lua
+#include pico8-lib/table/merge.lua
+#include pico8-lib/table/shift.lua
+#include pico8-lib/table/contains.lua
+#include pico8-lib/vendor/opensimplex.lua
+#include pico8-lib/vendor/fys.lua
+#include pico8-lib/debug.lua
+#include pico8-lib/vendor/unpack.lua
+-- #include ../pico8-lib/scribble.lua
 
-#include ../pico8-lib/binary/itb.lua
-#include ../pico8-lib/binary/bti.lua
-#include ../pico8-lib/binary/pull.lua
+#include pico8-lib/binary/itb.lua
+#include pico8-lib/binary/bti.lua
+#include pico8-lib/binary/pull.lua
 
 #include music.lua
 #include animations.lua
