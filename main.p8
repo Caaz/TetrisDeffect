@@ -1,7 +1,8 @@
 pico-8 cartridge // http://www.pico-8.com
 version 18
 __lua__
-
+-- Tetris Deffect
+-- By Daniel Caaz, Music by Bibiki
 #include pico8-lib/ichor.lua
 #include pico8-lib/table/forall.lua
 #include pico8-lib/table/merge.lua
